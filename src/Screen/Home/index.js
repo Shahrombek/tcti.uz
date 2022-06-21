@@ -1,29 +1,18 @@
 import { useEffect, useState } from "react";
-import homeImg from "../../home-img.png";
 import ParticlesBg from "particles-bg";
 import { Ariza } from "../../Components/Language";
 import { Card, Col, Row } from "antd";
-import firstPhoto from "../../images/news/1.jpeg";
-import secondPhoto from "../../images/news/2.jpeg";
-import thirdPhoto from "../../images/news/3.jpeg";
-import fourPhoto from "../../images/news/4jpeg.jpeg";
-import fivePhoto from "../../images/announcement/5.jpg";
-import sixPhoto from "../../images/announcement/6.jpg";
-import sevenPhoto from "../../images/announcement/7.jpg";
-import {
-  EnvironmentFilled,
-  MailFilled,
-  PhoneFilled,
-  YoutubeFilled,
-} from "@ant-design/icons";
+import { YoutubeFilled } from "@ant-design/icons";
 import ReactPaginate from "react-paginate";
 import qabulHero from "../../images/qabulHero.png";
 
-import { Container } from "../../container/Container";
 import { GetData } from "../../Api";
-import ReactLoading from "react-loading";
+
+import { useNavigate } from "react-router-dom";
+import Statistics from "../../pages/Statistics/Statistics";
 
 const Home = ({ setUserName, language }) => {
+  const navigate = useNavigate();
   const { news, announcement, router } = Ariza;
 
   // work with API
@@ -40,28 +29,18 @@ const Home = ({ setUserName, language }) => {
     console.log(announcements, news);
   }, []);
 
-  // useEffect(() => {     localStorage.removeItem("Token")
-  // localStorage.removeItem("user-data")     setUserName(null) }, [])
-
-  const style = {
-    padding: "10px",
-  };
-
   // data
-  const [postsPaginate, setPostsPaginate] = useState(posts);
   const [pageNumber, setPageNumber] = useState(0);
 
   const postsPerPage = 4;
-  const pagesVisited = pageNumber * postsPerPage;
 
   const displayPosts =
     newss &&
     newss.data.map((post) => {
       return (
         <Col className="gutter-row" span={6} key={post.id}>
-          <div style={style}>
+          <div className={'data__Card'} onClick={() => navigate(`/news/${post.id}`)}>
             <Card
-              hoverable="hoverable"
               style={{ height: 380, width: 250 }}
               cover={<img alt="" style={{ height: 180 }} src={post.img} />}
             >
@@ -88,20 +67,20 @@ const Home = ({ setUserName, language }) => {
   };
 
   // data 2
-  const [postsPaginate2, setPostsPaginate2] = useState(posts);
   const [pageNumber2, setPageNumber2] = useState(0);
 
   const postsPerPage2 = 3;
-  const pagesVisited2 = pageNumber2 * postsPerPage2;
 
   const displayPosts2 =
     announcements &&
     announcements.data.map((post) => {
       return (
         <Col className="gutter-row" span={6} key={post.id}>
-          <div style={style}>
+          <div
+            className={'data__Card'}
+            onClick={() => navigate(`/announcements/${post.id}`)}
+          >
             <Card
-              hoverable="hoverable"
               style={{ height: 380, width: 250 }}
               cover={<img alt="" style={{ height: 180 }} src={post.img} />}
             >
@@ -128,7 +107,7 @@ const Home = ({ setUserName, language }) => {
     setPageNumber2(selected);
   };
   return (
-    <Container>
+    <>
       <ParticlesBg color="#0d3b66" type="cobweb" num={35} bg={true} />
 
       <div className={"home-img"}>
@@ -221,6 +200,12 @@ const Home = ({ setUserName, language }) => {
           )}
         </div>
       </div>
+
+      {/*  */}
+
+      <Statistics />
+
+      {/*  */}
 
       <div className={"rectangle"}>
         <div className={"home-title"}>
@@ -379,140 +364,9 @@ const Home = ({ setUserName, language }) => {
         </div>
       </div>
 
-      <div className={"rectangle2"}>
-        <div>
-          <h3
-            style={{
-              color: "white",
-            }}
-          >
-            <EnvironmentFilled />
-            <b>Manzil:</b>
-            <a target="_blank" href="https://goo.gl/maps/yTkSZdFJnDFJiZDj8">
-              <b
-                style={{
-                  color: "white",
-                }}
-              >
-                Toshkent sh. Navoiy ko'chasi, 32-uy, 100011
-              </b>
-            </a>
-          </h3>
-          <h3
-            style={{
-              color: "white",
-            }}
-          >
-            <PhoneFilled />
-            Telefon:
-            <a
-              style={{
-                color: "white",
-              }}
-              href="tel:+998712447915"
-            >
-              (998-71) 244-79-15
-            </a>
-            ,
-            <a
-              style={{
-                color: "white",
-              }}
-              href="tel:+998712447918"
-            >
-              (998-71) 244-79-18
-            </a>
-            ,
-            <a
-              style={{
-                color: "white",
-              }}
-              href="tel:+998712447920"
-            >
-              (998-71) 244-79-20
-            </a>
-          </h3>
-          <h3
-            style={{
-              color: "white",
-            }}
-          >
-            <MailFilled />
-            Email:
-            <a
-              style={{
-                color: "white",
-              }}
-              href="mailto:info@tcti.uz"
-            >
-              info@tcti.uz
-            </a>
-          </h3>
-        </div>
-      </div>
       <br />
-    </Container>
+    </>
   );
 };
 
 export default Home;
-
-// fake data
-const posts = [
-  {
-    id: 1,
-    text:
-      "Toshkent kimyo-texnologiyalari instituti rektori Toshkent kimyo-texnologiyalar" +
-      " instituti Yangiyer filialiga tashrif buyurdi",
-    img: firstPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 2,
-    text: "Najot - maktabda, najot - ta'limda, najot - bilimda!",
-    img: secondPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 3,
-    text: '"Korrupsiyasiz soha" loyihasi amalda',
-    img: thirdPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 4,
-    text:
-      'Vinochilik texnologiyasi va sanoat uzumchilik fakulteti "Karyera kuni" bo\'lib' +
-      " o'tdi",
-    img: fourPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 5,
-    text:
-      "Toshkent kimyo-texnologiyalari instituti rektori Toshkent kimyo-texnologiyalar" +
-      " instituti Yangiyer filialiga tashrif buyurdi",
-    img: firstPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 6,
-    text: "Najot - maktabda, najot - ta'limda, najot - bilimda!",
-    img: firstPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 7,
-    text: '"Korrupsiyasiz soha" loyihasi amalda',
-    img: firstPhoto,
-    date: "13.04.2022",
-  },
-  {
-    id: 8,
-    text:
-      'Vinochilik texnologiyasi va sanoat uzumchilik fakulteti "Karyera kuni" bo\'lib' +
-      " o'tdi",
-    img: firstPhoto,
-    date: "13.04.2022",
-  },
-];

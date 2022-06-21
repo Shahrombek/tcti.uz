@@ -6,10 +6,10 @@
   left: 0;
   max-width: 1920px;
   margin: 0 auto;
+  background-color: white;
 }
 .navbar-item {
   display: flex;
-  background-color: white;
   justify-content: space-between;
   padding: 0.5rem 0;
   align-items: center;
@@ -108,6 +108,7 @@
 .col-1 div img {
   width: 80px;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 .col-2 {
@@ -121,8 +122,7 @@
 .ariza-box {
   margin: 2% auto;
   width: 70%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
   background-color: transparent;
   padding-bottom: 1rem;
 }
@@ -197,8 +197,7 @@
 .login-box {
   width: 400px;
   margin: 150px auto;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
   background-color: transparent;
   padding-bottom: 1rem;
 }
@@ -280,6 +279,7 @@
 .avatar-img {
   width: 50px;
   height: 50px;
+  object-fit: cover;
 }
 
 .ant-list-item-meta-content {
@@ -310,8 +310,7 @@ label[title="     "] {
 }
 
 .ul-li li {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
   padding: 1rem;
   margin: 10px 0;
   background: #fff;
@@ -356,6 +355,7 @@ label[title="     "] {
 .logo div img {
   width: 50px;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 .logo div {
@@ -377,10 +377,13 @@ label[title="     "] {
   width: 100%;
   margin: 0 auto;
   margin-top: 30px;
+  object-fit: cover;
 }
 
 .home-img img {
   width: 100%;
+  min-height: 200px;
+  object-fit: cover;
 }
 
 .ant-list {
@@ -398,8 +401,7 @@ label[title="     "] {
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: rgb(0 0 0 / 16%) 0px 10px 36px 0px,
-    rgb(0 0 0 / 6%) 0px 0px 0px 1px;
+  box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
 }
 
 .rectangle2 {
@@ -573,7 +575,7 @@ label[title="     "] {
     transform: scale(1.2);
     display: block !important;
   }
-  .d-none{
+  .d-none {
     display: none !important;
   }
 }
@@ -583,6 +585,13 @@ label[title="     "] {
 }
 
 /* ---------------- */
+.data__Card {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.data__Card:hover {
+  box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
+}
 
 .commands {
   display: flex;
@@ -617,39 +626,39 @@ label[title="     "] {
   transform: rotate(45deg) translate(0%);
 }
 
-
-@media (max-width:1620px){
-  .button-48{
+@media (max-width: 1620px) {
+  .button-48 {
     padding: 1.5em 0.5vw;
   }
-  .button-48 span{
+  .button-48 span {
     font-size: 12px;
   }
-  .col-1 div img{
+  .col-1 div img {
     width: 60px !important;
+    object-fit: cover;
   }
-  .col-1 div span{
+  .col-1 div span {
     font-size: 12px !important;
   }
   .commands button {
     width: 30px;
   }
 }
-@media (max-width:1250px){
-  .col-1 .costum-logo-text{
+@media (max-width: 1250px) {
+  .col-1 .costum-logo-text {
     width: 140px !important;
   }
-  .col-1 div img{
+  .col-1 div img {
     width: 58px !important;
   }
-  .col-1 div span{
+  .col-1 div span {
     font-size: 11px !important;
   }
 }
 
-.loading{
+.loading {
   font-size: 20px;
-  height:150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,7 +676,7 @@ label[title="     "] {
   width: 4vw;
   height: 4vw;
   border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 6px solid rgba(0,0,0,0.6); /* Black */
+  border-top: 6px solid rgba(0, 0, 0, 0.6); /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }
