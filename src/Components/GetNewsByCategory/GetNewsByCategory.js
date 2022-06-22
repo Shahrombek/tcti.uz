@@ -2,25 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { GetData } from "../../Api";
 import { GetNewsWrapper } from "./GetNewsWrapper";
+import { NewsData, AnnoData } from "../../data/PostData";
 
 const GetNewsByCategory = ({ language }) => {
   var { id } = useParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const type = pathname.includes("news") ? "news" : "announcements";
-
+  const [type, setType] = useState('');
+  
+  useEffect(() => {
+    if (pathname.includes("news")) {
+      setType("news");
+      setData(NewsData);
+    } else {
+      setType("announcements");
+      setData(AnnoData);
+    }
+    setLoading(false);
+  }, []);
+  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(pathname);
-
-  useEffect(async () => {
-    const res = await GetData(type);
-    if (res.success) {
-      setLoading(false);
-      setData(res.data);
-    }
-  }, []);
 
   if (!loading) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -70,7 +73,7 @@ const GetNewsByCategory = ({ language }) => {
               return (
                 <div key={item.id} className="img__content">
                   <img
-                    onClick={() => navigate(`/${type}/${item.id}`)}
+                    onClick={() => navigate(`/${type}/${item.id}`)} //navigate(`/${type}/${item.id}`)
                     src={item.img}
                     alt={item.id}
                   />

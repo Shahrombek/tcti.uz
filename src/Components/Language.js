@@ -18,6 +18,7 @@ export const Ariza = {
     lang: ["Talim tilini tanlang", "Выберите язык обучения", "Choose the language of instruction"],
     education: ["Talim darajasini tanlang", "Выберите уровень образования", "Select the level of education"],
     faculty: ["Fakultetni kiriting", "Введите факультет", "Faculty"],
+    university: ["Universitetni kiriting", "Введите университет", "University"],
     facultyName1: ["Kunduzgi", "Утренний","In the morning"],
     facultyName2: ["Kechgi", "Bечером","In the evening"],
     lang1: ["Rus tili", "Русский", "Russian"],

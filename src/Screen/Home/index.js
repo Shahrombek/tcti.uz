@@ -10,57 +10,57 @@ import { GetData } from "../../Api";
 
 import { useNavigate } from "react-router-dom";
 import Statistics from "../../pages/Statistics/Statistics";
+import {NewsData, AnnoData} from '../../data/PostData'
 
 const Home = ({ setUserName, language }) => {
   const navigate = useNavigate();
   const { news, announcement, router } = Ariza;
 
   // work with API
-  const [newss, setNewss] = useState(false);
-  const [announcements, setAnnouncements] = useState(false);
+  const [newss, setNewss] = useState(NewsData);
+  const [announcements, setAnnouncements] = useState(AnnoData);
 
-  useEffect(async () => {
-    const announcements = await GetData("announcements");
-    const news = await GetData("news");
+  // useEffect(async () => {
+  //   const announcements = await GetData("announcements");
+  //   const news = await GetData("news");
 
-    setAnnouncements(announcements);
-    setNewss(news);
-
-    console.log(announcements, news);
-  }, []);
+  //   console.log(announcement, news);
+  //   setAnnouncements(announcements);
+  //   setNewss(news);
+  // }, []);
 
   // data
   const [pageNumber, setPageNumber] = useState(0);
-
   const postsPerPage = 4;
 
-  const displayPosts =
-    newss &&
-    newss.data.map((post) => {
-      return (
-        <Col className="gutter-row" span={6} key={post.id}>
-          <div className={'data__Card'} onClick={() => navigate(`/news/${post.id}`)}>
-            <Card
-              style={{ height: 380, width: 250 }}
-              cover={<img alt="" style={{ height: 180 }} src={post.img} />}
-            >
-              <div style={{ height: 100 }}>
-                <a href="/">
-                  {language === 0
-                    ? post.title_uz
-                    : language === 1
-                    ? post.title_ru
-                    : post.title_en}
-                </a>
-              </div>
-              <h4>{post.date}</h4>
-            </Card>
-          </div>
-        </Col>
-      );
-    });
+  const displayPosts = newss.map((post, index) => {
+    return (
+      <Col className="gutter-row" span={6} key={post.id}>
+        <div
+          className={"data__Card"}
+          onClick={() => navigate(`/news/${post.id}`)}
+        >
+          <Card
+            style={{ height: 380, width: 250 }}
+            cover={<img alt="" style={{ height: 180 }} src={post.img} />}
+          >
+            <div style={{ height: 100 }}>
+              <a href="/">
+                {language === 0
+                  ? post.title_uz
+                  : language === 1
+                  ? post.title_ru
+                  : post.title_en}
+              </a>
+            </div>
+            <h4>{post.date}</h4>
+          </Card>
+        </div>
+      </Col>
+    );
+  });
 
-  const pageCount = newss && Math.ceil(newss.data.length / postsPerPage);
+  const pageCount = newss && Math.ceil(newss.length / postsPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -71,37 +71,35 @@ const Home = ({ setUserName, language }) => {
 
   const postsPerPage2 = 3;
 
-  const displayPosts2 =
-    announcements &&
-    announcements.data.map((post) => {
-      return (
-        <Col className="gutter-row" span={6} key={post.id}>
-          <div
-            className={'data__Card'}
-            onClick={() => navigate(`/announcements/${post.id}`)}
+  const displayPosts2 = announcements.map((post, index) => {
+    return (
+      <Col className="gutter-row" span={6} key={post.id}>
+        <div
+          className={"data__Card"}
+          onClick={() => navigate(`/announcements/${post.id}`)}
+        >
+          <Card
+            style={{ height: 380, width: 250 }}
+            cover={<img alt="" style={{ height: 180 }} src={post.img} />}
           >
-            <Card
-              style={{ height: 380, width: 250 }}
-              cover={<img alt="" style={{ height: 180 }} src={post.img} />}
-            >
-              <div style={{ height: 100 }}>
-                <a href="/">
-                  {language === 0
-                    ? post.title_uz
-                    : language === 1
-                    ? post.title_ru
-                    : post.title_en}
-                </a>
-              </div>
-              <h4>{post.date}</h4>
-            </Card>
-          </div>
-        </Col>
-      );
-    });
+            <div style={{ height: 100 }}>
+              <a href="/">
+                {language === 0
+                  ? post.title_uz
+                  : language === 1
+                  ? post.title_ru
+                  : post.title_en}
+              </a>
+            </div>
+            <h4>{post.date}</h4>
+          </Card>
+        </div>
+      </Col>
+    );
+  });
 
   const pageCount2 =
-    announcements && Math.ceil(announcements.data.length / postsPerPage2);
+    announcements && Math.ceil(announcements.length / postsPerPage2);
 
   const changePage2 = ({ selected }) => {
     setPageNumber2(selected);
@@ -180,7 +178,7 @@ const Home = ({ setUserName, language }) => {
               </div>
             </div>
           ) : (
-            <div className="row">
+            <div className="row row2">
               {displayPosts2}
               <ReactPaginate
                 breakLabel="..."

@@ -107,7 +107,9 @@
 
 .col-1 div img {
   width: 80px;
+  height: 100px;
   margin-right: 10px;
+  margin-top: 10px;
   object-fit: cover;
 }
 
@@ -121,6 +123,7 @@
 /* ARIZA */
 .ariza-box {
   margin: 2% auto;
+  margin-top: 30px !important;
   width: 70%;
   box-shadow: 0px 0px 15px -1px rgba(34, 60, 80, 0.2);
   background-color: transparent;
@@ -144,7 +147,12 @@
 
 .ant-col {
   display: flex !important;
-  max-width: 80%;
+  max-width: 100%;
+}
+.submit__btn .ant-form-item-control-input-content {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .ant-picker {
@@ -388,7 +396,6 @@ label[title="     "] {
 
 .ant-list {
   font-size: 11px !important;
-  
 }
 .ant-list2 {
   font-size: 16px !important;
@@ -434,11 +441,13 @@ label[title="     "] {
 
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: start;
   margin: 2vw 1vw;
   flex-wrap: wrap;
+  /* gap:20px; */
 }
+
 
 .gutter-row {
   display: flex;
@@ -563,6 +572,9 @@ label[title="     "] {
   margin-left: 12%;
 }
 @media (max-width: 1200px) {
+  .ariza-box{
+    width: 90%;
+  }
   .a2 {
     display: none;
   }
@@ -635,7 +647,8 @@ label[title="     "] {
     font-size: 12px;
   }
   .col-1 div img {
-    width: 60px !important;
+    width: 70px;
+    height: 90px;
     object-fit: cover;
   }
   .col-1 div span {
@@ -646,16 +659,41 @@ label[title="     "] {
   }
 }
 @media (max-width: 1250px) {
+  .row{
+    gap:20px;
+  }
   .col-1 .costum-logo-text {
     width: 140px !important;
   }
   .col-1 div img {
-    width: 58px !important;
+    width: 65px;
+    height: 87px;
   }
   .col-1 div span {
     font-size: 11px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .ariza-box .form-ariza {
+      flex-direction: column;
+      gap:20px;
+      padding:4vw 6vw;
+    }
+    .ariza-box .form-ariza .form-col-1 {
+    padding: 0;
+      margin:0 auto;
+      width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
 
 .loading {
   font-size: 20px;
